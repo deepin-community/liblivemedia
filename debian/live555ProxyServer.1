@@ -1,0 +1,22 @@
+.TH LIVE555PROXYSERVER "1" "December 2016" "LIVE555PROXYSERVER" "User Commands"
+.SH NAME
+live555ProxyServer \- RTSP/RTP proxy server
+.SH SYNOPSIS
+live555ProxyServer [options] <url>...
+.SH DESCRIPTION
+.sp
+The "LIVE555 Proxy Server" is a unicast RTSP server that acts as a 'proxy' for
+one or more 'back-end' unicast or multicast RTSP/RTP streams (i.e., served by
+other server(s)).
+.sp
+The key feature of a proxy server is that it reads each 'back-end' stream only
+once, regardless of how many separate clients are streaming from the proxy
+server. This makes the proxy server ideal, for example, for streaming from a
+RTSP-enabled video camera (which might not be able to handle more than one
+connection at a time).
+.sp
+.SH SEE ALSO
+.sp
+\fIopenRTSP(1)\fP, \fIlive555MediaServer(1)\fP
+.sp
+\fIhttp://www.live555.com/proxyServer/\fP

@@ -1,0 +1,128 @@
+Source: liblivemedia
+Section: libs
+Priority: optional
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Uploaders: Reinhard Tartler <siretart@tauware.de>,
+           Sam Hocevar (Debian packages) <sam+deb@zoy.org>,
+           Christophe Mutricy <xtophe@videolan.org>,
+           Sebastian Ramacher <sramacher@debian.org>
+Build-Depends: debhelper (>= 11)
+Standards-Version: 4.2.1
+Homepage: http://www.live555.com/liveMedia/
+Vcs-Git: https://salsa.debian.org/multimedia-team/liblivemedia.git
+Vcs-Browser: https://salsa.debian.org/multimedia-team/liblivemedia
+Rules-Requires-Root: no
+
+Package: liblivemedia-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: libbasicusageenvironment1 (= ${binary:Version}),
+         libgroupsock8 (= ${binary:Version}),
+         liblivemedia64 (= ${binary:Version}),
+         libusageenvironment3 (= ${binary:Version}),
+         ${misc:Depends}
+Description: multimedia RTSP streaming library (development files)
+ The live555.com streaming media code is a set of C++ libraries for multimedia
+ streaming, using open standard protocols (RTP/RTCP, RTSP, SIP). These
+ libraries can be used to build applications to stream, receive and process
+ MPEG, H.263+ or JPEG video, several audio codecs, and can easily be extended
+ to support additional codecs. They can also be used to build basic RTSP (Real
+ Time Streaming Protocol) or SIP (Session Initiation Protocol) clients and
+ servers.
+ .
+ This package contains the headers and static libraries required to build
+ applications that use live555.com.
+
+Package: libbasicusageenvironment1
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: multimedia RTSP streaming library (BasicUsageEnvironment class)
+ The live555.com streaming media code is a set of C++ libraries for multimedia
+ streaming, using open standard protocols (RTP/RTCP, RTSP, SIP). These
+ libraries can be used to build applications to stream, receive and process
+ MPEG, H.263+ or JPEG video, several audio codecs, and can easily be extended
+ to support additional codecs. They can also be used to build basic RTSP (Real
+ Time Streaming Protocol) or SIP (Session Initiation Protocol) clients and
+ servers.
+ .
+ This package contains the BasicUsageEnvironment library which defines one
+ concrete implementation (i.e., subclasses) of the "UsageEnvironment" classes,
+ for use in simple, console applications. Read events and delayed operations are
+ handled using a select() loop.
+
+Package: libgroupsock8
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: multimedia RTSP streaming library (network interfaces and sockets)
+ The live555.com streaming media code is a set of C++ libraries for multimedia
+ streaming, using open standard protocols (RTP/RTCP, RTSP, SIP). These
+ libraries can be used to build applications to stream, receive and process
+ MPEG, H.263+ or JPEG video, several audio codecs, and can easily be extended
+ to support additional codecs. They can also be used to build basic RTSP (Real
+ Time Streaming Protocol) or SIP (Session Initiation Protocol) clients and
+ servers.
+ .
+ This package contains the groupsock library. The classes in this library
+ encapsulate network interfaces and sockets. In particular, the "Groupsock"
+ class encapsulates a socket for sending (and/or receiving) multicast datagrams.
+
+Package: liblivemedia64
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: multimedia RTSP streaming library
+ The live555.com streaming media code is a set of C++ libraries for multimedia
+ streaming, using open standard protocols (RTP/RTCP, RTSP, SIP). These
+ libraries can be used to build applications to stream, receive and process
+ MPEG, H.263+ or JPEG video, several audio codecs, and can easily be extended
+ to support additional codecs. They can also be used to build basic RTSP (Real
+ Time Streaming Protocol) or SIP (Session Initiation Protocol) clients and
+ servers.
+ .
+ This package contains the liveMedia library which defines a class hierarchy -
+ rooted in the "Medium" class - for a variety of streaming media types and
+ codecs.
+
+Package: libusageenvironment3
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: multimedia RTSP streaming library (UsageEnvironment classes)
+ The live555.com streaming media code is a set of C++ libraries for multimedia
+ streaming, using open standard protocols (RTP/RTCP, RTSP, SIP). These
+ libraries can be used to build applications to stream, receive and process
+ MPEG, H.263+ or JPEG video, several audio codecs, and can easily be extended
+ to support additional codecs. They can also be used to build basic RTSP (Real
+ Time Streaming Protocol) or SIP (Session Initiation Protocol) clients and
+ servers.
+ .
+ This package contains the UsageEnvironment library. The "UsageEnvironment" and
+ "TaskScheduler" classes are used for scheduling deferred events, for assigning
+ handlers for asynchronous read events, and for outputting error/warning
+ messages. Also, the "HashTable" class defines the interface to a generic hash
+ table, used by the rest of the code.
+ .
+ These are all abstract base classes; they must be subclassed for use in an
+ implementation. These subclasses can exploit the particular properties of the
+ environment in which the program will run - e.g., its GUI and/or scripting
+ environment.
+
+Package: livemedia-utils
+Section: net
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: multimedia RTSP streaming tools
+ The live555.com streaming media code is a set of C++ libraries for multimedia
+ streaming, using open standard protocols (RTP/RTCP, RTSP, SIP). These
+ libraries can be used to build applications to stream, receive and process
+ MPEG, H.263+ or JPEG video, several audio codecs, and can easily be extended
+ to support additional codecs. They can also be used to build basic RTSP (Real
+ Time Streaming Protocol) or SIP (Session Initiation Protocol) clients and
+ servers.
+ .
+ This package contains the live555.com streaming servers (live555MediaServer
+ and live555ProxyServer), the example programs (openRTSP, playSIP, sapWatch,
+ vobStreamer) and a variety of test tools.

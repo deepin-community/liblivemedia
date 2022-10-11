@@ -1,0 +1,181 @@
+.TH OPENRTSP "1" "December 2016" "OPENRTSP" "User Commands"
+.SH NAME
+.sp
+openRTSP \- open, stream, receive, and (optionally) record media streams that
+are specified by a RTSP URL
+.sp
+playSIP \- SIP session recorder
+.SH SYNOPSIS
+.sp
+vobStreamer [options...]
+.sp
+playISP [options...]
+.SH DESCRIPTION
+.sp
+The program will open the given URL (using RTSP's "DESCRIBE" command), retrieve
+the session's SDP description, and then, for each audio/video subsession whose
+RTP payload format it understands, "SETUP" and "PLAY" the subsession.
+.sp
+The received data for each subsession is written into a separate output file,
+named according to its MIME type. For example, if the session contains a MPEG-1
+or 2 audio subsession (RTP payload type 14) - e.g., MP3 - and a MPEG-1 or 2
+video subsession (RTP payload type 32), then each subsession's data will be
+extracted from the incoming RTP packets and written to files named "audio-MPA-1"
+and "video-MPV-2" (respectively). (You will probably then need to rename these
+files - by giving them an appropriate filename extension (e.g., ".mp3" and
+".mpg") - in order to be able to play them using common media player tools.)
+.SH OPTIONS
+.TP
+\fB\-4\fP
+output a '.mp4'-format file (to 'stdout', unless the "-P <interval-in-seconds>"
+option is also given)
+.TP
+\fB\-a\fP
+play only the audio stream (to 'stdout', unless the "-P <interval-in-seconds>"
+option is also given)
+.TP
+\fB\-A\fP <codec-number>
+specify the static RTP payload format number of the audio codec to request from
+the server ("playSIP" only)
+.TP
+\fB\-b\fP <buffer-size>
+change the output file buffer size
+.TP
+\fB\-B\fP <buffer-size>
+change the input network socket buffer size
+.TP
+\fB\-c\fP
+play continuously
+.TP
+\fB\-C\FP
+Explicitly ask for a multicast stream even if the server's "DESCRIBE" response
+doesn't specift a multicast address. (Note that not all servers will support
+this.) ("openRTSP" only)
+.TP
+\fB\-d\fP <duration>
+specify an explicit duration
+.TP
+\fB\-D\fP <maximum-inter-packet-gap>
+specify a maximum period of inactivity to wait before exiting
+.TP
+\fB\-E\fP <absolute-seek-end-time>
+request that the server end streaming at the specified absolute time (format:
+"YYYYMMDDTHHMMSSZ" or "YYYYMMDDTHHMMSS.<frac>Z") (used only with
+-U<initial-absolute-seek-time>)
+.TP
+\fB\-f\fP <frame-rate>
+specify the video frame rate (used only with "-q", "-4", or "-i")
+.TP
+\fB\-F\fP <fileName-prefix>
+specify a prefix for each output file name
+.TP
+\fB\-g\fP <user-agent-name>
+specify a user agent name to use in outgoing requests
+.TP
+\fB\-h\fP <height>
+specify the video image height (used only with "-q", "-4", or "-i")
+.TP
+\fB\-H\fP
+output a QuickTime 'hint track' for each audio/video track (used only with "-q"
+or "-4")
+.TP
+\fB\-i\fP
+output a '.avi'-format file (to 'stdout', unless the "-P <interval-in-seconds>"
+option is also given)
+.TP
+\fB\-I\fP <interface-name-or-address>
+specify a particular network interface on which to receive data
+.TP
+\fB\-k\fP <username> <password>
+specify a user name and password that's required to authenticate an incoming
+"REGISTER" command (used with "-R" only)
+.TP
+\fB\-K\fP
+Periodically send a RTSP "OPTIONS" command, to keep the connection alive. (This
+is useful with buggy servers that don't listen to our periodic RTCP "RR" packets
+instead.)
+.TP
+\fB\-l\fP
+try to compensate for packet losses (used only with "-q", "-4", or "-i")
+.TP
+\fB\-m\fP
+output each incoming frame into a separate file
+.TP
+\fB\-M\fP <MIME-subtype>
+specify the MIME subtype of a dynamic RTP payload format for the audio codec to
+request from the server ("playSIP" only)
+.TP
+\fB\-n\fP
+be notified when RTP data packets start arriving
+.TP
+\fB\-o\fP
+request the server's command options, without sending "DESCRIBE" ("openRTSP"
+only)
+.TP
+\fB\-O\fP
+don't request the server's command options; just send "DESCRIBE" ("openRTSP"
+only)
+.TP
+\fB\-p\fP <starting-port-number>
+specify the client port number(s)
+.TP
+\fB\-P\fP <interval-in-seconds>
+write new output files every <interval-in-seconds> seconds
+.TP
+\fB\-q\fP
+output a QuickTime '.mov'-format file (to 'stdout', unless the "-P
+<interval-in-seconds>" option is also given)
+.TP
+\fB\-Q\fP
+output 'QOS' statistics about the data stream (when the program exits)
+.TP
+\fB\-r\fP
+play the RTP streams, but don't receive them ourself
+.TP
+\fB\-R\fP [<port-number>]
+Waits for an incoming "REGISTER" command, specifying a "rtsp://" URL to play.
+This option is used instead of a "rtsp://" URL on the command line. ("openRTSP"
+only)
+.TP
+\fB\-s\fP <initial-seek-time>
+request that the server seek to the specified time (in seconds) before streaming
+.TP
+\fB\-S\fP <byte-offset>
+assume a simple RTP payload format (skipping over a special header of the
+specified size)
+.TP
+\fB\-t\fP
+stream RTP/RTCP data over TCP, rather than (the usual) UDP. ("openRTSP" only)
+.TP
+\fB\-T\fP <http-port-number>
+like "-t", except using RTSP-over-HTTP tunneling. ("openRTSP" only)
+.TP
+\fB\-u\fP <username> <password>
+specify a user name and password for digest authentication
+.TP
+\fB\-U\fP <initial-absolute-seek-time>
+request that the server seek to the specified absolute time (format:
+"YYYYMMDDTHHMMSSZ" or "YYYYMMDDTHHMMSS.<frac>Z") before streaming
+.TP
+\fB\-v\fP
+play only the video stream (to 'stdout', unless the "-P <interval-in-seconds>"
+option is also given)
+.TP
+\fB\-V\fP
+print less verbose diagnostic output
+.TP
+\fB\-w\fP <width>
+specify the video image width (used only with "-q", "-4", or "-i")
+.TP
+\fB\-y\fP
+try to synchronize the audio and video tracks (used only with "-q" or "-4")
+.TP
+\fB\-z\fP <scale>
+request that the server scale the stream (fast-forward, slow, or reverse play)
+.SH SEE ALSO
+.sp
+\fIopenRTSP(1)\fP,
+\fIplaySIP(1)\fP
+.sp
+\fIhttp://www.live555.com/openRTSP/\fP,
+\fIhttp://www.live555.com/playSIP/\fP

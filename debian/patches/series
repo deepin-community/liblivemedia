@@ -1,0 +1,7 @@
+0001-ip_mreq_source-is-defined-in-all-glibc-not-just-on-k.patch
+0002-Add-a-pkg-config-file-for-the-shared-libraries.patch
+0003-Link-shared-libraries-with-g-instead-of-gcc-to-fix-b.patch
+0004-Reduce-number-of-unresolved-symbols-by-linking-libra.patch
+
+CVE-2019-7314.patch
+CVE-2019-9215.patch

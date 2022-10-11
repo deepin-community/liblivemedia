@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/architecture.mk
+ifeq ($(origin CC),default)
+CC := $(DEB_HOST_GNU_TYPE)-gcc
+endif
+export CC
+ifeq ($(origin CXX),default)
+CXX := $(DEB_HOST_GNU_TYPE)-g++
+endif
+export CXX
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	./genMakefiles linux-with-shared-libraries
+
+override_dh_auto_install:
+	dh_auto_install -- \
+		PREFIX=/usr \
+		LIBDIR=/usr/lib/$(DEB_HOST_MULTIARCH)
+
+override_dh_makeshlibs:
+	dh_makeshlibs -V

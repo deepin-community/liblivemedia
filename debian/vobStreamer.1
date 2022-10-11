@@ -1,0 +1,23 @@
+.TH VOBSTREAMER "1" "December 2016" "VOBSTREAMER" "User Commands"
+.SH NAME
+vobStreamer \- display information from VA API driver
+.SH SYNOPSIS
+vobStreamer [\-i] [\-a|\-v] [\-p <RTSP-server-port-number>]
+<VOB-files>
+.SH DESCRIPTION
+.sp
+vobStreamer reads one or more ".vob" files (e.g., from a DVD), extracts the
+audio and video streams, and transmits them using RTP multicast.
+.SH OPTIONS
+.TP
+\fB\-a\fP
+transmit only the audio stream
+.TP
+\fB\-i\fP
+stream only 'key' video frames - i.e., I-frames (to reduce the output bitrate)
+.TP
+\fB\-p\fP <RTSP-server-port-number>
+specify the port number for the built-in RTSP server (default: 554)
+.TP
+\fB\-v\fP
+transmit only the video stream
